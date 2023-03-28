@@ -25,5 +25,7 @@ jobs:
         local-dir: ./www/
         exclude: |
           **/.git*
+          *-local.php
+
 
 
