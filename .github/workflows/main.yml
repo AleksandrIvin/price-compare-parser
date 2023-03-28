@@ -15,9 +15,8 @@ jobs:
 
     # - name: Install dependencies
     #  run: npm install # Or any other command to install dependencies
-
-    - name: Deploy to web hosting
-      uses: SamKirkland/FTP-Deploy-Action@4.3.4
+    - name: FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.SFTP_SERVER }}
         username: ${{ secrets.SFTP_USERNAME }}
