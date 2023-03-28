@@ -6,23 +6,25 @@ on:
       - master
 
 jobs:
-  deploy:
+  web-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     # - name: Install dependencies
     #  run: npm install # Or any other command to install dependencies
 
     - name: Deploy to web hosting
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      uses: SamKirkland/FTP-Deploy-Action@4.3.4
       with:
         server: ${{ secrets.SFTP_SERVER }}
         username: ${{ secrets.SFTP_USERNAME }}
         password: ${{ secrets.SFTP_PASSWORD }}
-        local-dir: ./www
+        port: ${{ secrets.SFTP_PORT }}
+        protocol: ftps
+        local-dir: ./www/
         remote-dir: /
         args: "--exclude '.git*'"
 
