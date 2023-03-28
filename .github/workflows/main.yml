@@ -18,7 +18,7 @@ jobs:
       env:
         SECRET_EMAIL: ${{ secrets.SECRET_EMAIL }}
         ADMIN_NAME: ${{ vars.ADMIN_NAME }}
-        CONTEXT_VAR: ${{ github.base_ref }}
+        CONTEXT_VAR: ${{ github.sha }}
       with:
         input: ./www/config/params.php
         output: ./www/config/params-local.php
@@ -34,7 +34,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftp
         local-dir: ./www/
-        server-dir: ./dev/${{ github.head_ref }}/
+        server-dir: ./dev/${{ github.ref_name }}/
         exclude: |
           **/.git*
 
