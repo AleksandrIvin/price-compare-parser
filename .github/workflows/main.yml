@@ -1,4 +1,4 @@
-name: Deploy to Web Hosting via SFTP
+name: Deploy to Web Hosting via FTP
 
 on:
   push:
@@ -18,13 +18,11 @@ jobs:
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ${{ secrets.SFTP_SERVER }}
-        username: ${{ secrets.SFTP_USERNAME }}
-        password: ${{ secrets.SFTP_PASSWORD }}
-          #port: ${{ secrets.SFTP_PORT }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftp
         local-dir: ./www/
-          # remote-dir: /
         exclude: |
           **/.git*
 

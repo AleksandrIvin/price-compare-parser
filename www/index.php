@@ -1,7 +1,7 @@
 <?php
 
-echo 'It works from github actions!'
+echo 'It works from FTP github actions!';
 
-
+?>
 
 
