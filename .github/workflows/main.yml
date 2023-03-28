@@ -22,7 +22,7 @@ jobs:
         username: ${{ secrets.SFTP_USERNAME }}
         password: ${{ secrets.SFTP_PASSWORD }}
           #port: ${{ secrets.SFTP_PORT }}
-        protocol: ftps
+        protocol: ftp
         local-dir: ./www/
           # remote-dir: /
         exclude: |
