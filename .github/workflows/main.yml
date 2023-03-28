@@ -3,7 +3,7 @@ name: Deploy to Web Hosting via FTP
 on:
   push:
     branches:
-      - master
+      - feature*
 
 jobs:
   web-deploy:
@@ -23,6 +23,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftp
         local-dir: ./www/
+        server-dir: ${{ github.ref }}/
         exclude: |
           **/.git*
           *-local.php
