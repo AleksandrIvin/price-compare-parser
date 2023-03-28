@@ -3,7 +3,7 @@ name: Deploy to Web Hosting via SFTP
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
