@@ -14,9 +14,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Parse config file
-      uses: edgardleal/mustache-template-action@v1.0.0
+      uses: edgardleal/mustache-template-action@v1.0.4
       env:
         SECRET_EMAIL: ${{ secrets.SECRET_EMAIL }}
+        ADMIN_NAME: ${{ vars.ADMIN_NAME }}
       with:
         input: ./www/config/params.php
         output: ./www/config/params-local.php
