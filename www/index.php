@@ -4,7 +4,7 @@ $params = array_merge(
     require(__DIR__ . '/config/params-local.php')
 );
 echo 'It works from FTP github actions!';
-echo $params;
+echo $params['adminEmail'];
 
 ?>
 
