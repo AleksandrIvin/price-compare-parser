@@ -13,6 +13,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Parse config file
+      uses: edgardleal/mustache-template-action@v1.0.0
+      env:
+        SECRET_EMAIL: $ {{ secrets.SECRET_EMAIL }}
+      with:
+        input: ./www/config/params.php
+        output: ./www/config/params-local.php
+
+
     # - name: Install dependencies
     #  run: npm install # Or any other command to install dependencies
     - name: FTP Deploy
@@ -26,7 +35,6 @@ jobs:
         server-dir: ${{ github.ref }}/
         exclude: |
           **/.git*
-          *-local.php
 
 
 
