@@ -24,7 +24,8 @@ jobs:
         port: ${{ secrets.SFTP_PORT }}
         protocol: ftps
         local-dir: ./www/
-        remote-dir: /
-        args: "--exclude '.git*'"
+          # remote-dir: /
+        exclude: |
+          **/.git*
 
 
