@@ -6,6 +6,7 @@ $params = array_merge(
 echo 'This code has been deployed by the FTP github action! <br/>';
 echo 'These params have been ovewritten by params-local.php: <br/>';
 echo $params['adminEmail'];
+echo $params['adminName'];
 
 ?>
 
