@@ -1,0 +1,29 @@
+name: Deploy to Web Hosting via SFTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # - name: Install dependencies
+    #  run: npm install # Or any other command to install dependencies
+
+    - name: Deploy to web hosting
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.SFTP_SERVER }}
+        username: ${{ secrets.SFTP_USERNAME }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        local-dir: ./www
+        remote-dir: /
+        args: "--exclude '.git*'"
+
+
