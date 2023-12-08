@@ -50,7 +50,7 @@ jobs:
       - name: Parse env file
         uses: edgardleal/mustache-template-action@v1.0.4
         env:
-          DC_ENV_CONF_SECTION: ${{ env[inputs.serverConf] }}
+          DC_ENV_CONF_SECTION: ${{{ env[inputs.serverConf] }}}
         with:
           input: ./env
           output: ./.env
