@@ -1,0 +1,80 @@
+name: Manual SSH Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+        serverConf:
+          description: 'Select deployment configuration'
+          required: true
+          default: 'TEST_CONF_1'
+          type: choice
+          options:
+          - TEST_CONF_1
+          - TEST_CONF_2
+        serverIpConf:
+          description: 'Select deployment configuration'
+          required: true
+          default: 'TEST_SERVER_IP_1'
+          type: choice
+          options:
+          - TEST_SERVER_IP_1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      TEST_CONF_1: ${{ secrets.TEST_CONF_1 }}
+      TEST_CONF_2: ${{ secrets.TEST_CONF_2 }}
+      # TEST_SERVER_IP_1: ${{ vars.TEST_SERVER_IP_1 }}    
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Parse env file
+        uses: edgardleal/mustache-template-action@v1.0.4
+        env:
+          DC_ENV_CONF_SECTION: ${{ env[inputs.serverConf] }}
+        with:
+          input: ./env
+          output: ./.env
+
+      - name: Cat ./.env
+        run: |
+          cat .env    
+
+      - name: Set environment variables
+        run: |
+          TEST_SERVER_IP=$(echo "$MANY_VARS_CONTENT" | grep '^TEST_SERVER_IP=' | awk -F'=' '{print $2}')
+          echo "TEST_SERVER_IP=$TEST_SERVER_IP"
+          
+        env:
+          TEST_SERVER_IP: ${{ env.TEST_SERVER_IP }}
+
+      - name: Copy docker-compose.yml
+        run: |
+          # Add your deployment script or commands here
+          cp demo-docker-compose.yml docker-compose.yml
+
+      - name: Copy docker-compose.yml
+        run: |
+          # Add your deployment script or commands here
+          cp demo-docker-compose.yml docker-compose.yml
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+
+          
+      - name: Deploy via SSH
+        env:
+            TEST_SERVER_IP: ${{ env[inputs.serverIpConf] }}
+        run: |
+          scp -o StrictHostKeyChecking=no -r ./* ubuntu@${{ env.TEST_SERVER_IP }}/data/containers/dev/verwalter1
+
+      - name: Setup via SSH
+        env:
+            TEST_SERVER_IP: ${{ env[inputs.serverIpConf] }}
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ env.TEST_SERVER_IP }} 'cd /data/containers/dev/verwalter1 && ./setup.sh'        
