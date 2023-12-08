@@ -31,6 +31,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Dump ENV
+        env:
+          DUMP_ENV: ${{ env }}
+        run: echo "$DUMP_ENV" 
+        
+
       - name: Dump job context
         env:
           DUMP_VARS: ${{ env[inputs.serverConf] }}
