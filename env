@@ -35,7 +35,7 @@ database.default.database = {{DATABASE_DBNAME}}
 database.default.username = {{DATABASE_USERNAME}}
 database.default.password = {{DATABASE_PASWWORD}}
 
-{{DC_ENV_CONF_SECTION}}
+{{{DC_ENV_CONF_SECTION}}}
 
 #--------------------------------------------------------------------
 # ENVIRONMENT
