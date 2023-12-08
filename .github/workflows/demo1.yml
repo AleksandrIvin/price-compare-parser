@@ -35,6 +35,11 @@ jobs:
         env:
           DUMP_ENV: ${{ toJson(env) }}
         run: echo "$DUMP_ENV" 
+
+      - name: Dump ENV
+        env:
+          DUMP_INPUTS: ${{ toJson(inputs) }}
+        run: echo "$DUMP_INPUTS"    
         
 
       - name: Dump job context
