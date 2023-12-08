@@ -1,0 +1,82 @@
+#--------------------------------------------------------------------
+# Example Environment Configuration file
+#
+# This file can be used as a starting point for your own
+# custom .env files, and contains most of the possible settings
+# available in a default install.
+#
+# By default, all of the settings are commented out. If you want
+# to override the setting, you must un-comment it by removing the '#'
+# at the beginning of the line.
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+# DOCKER ENVIRONMENT
+#--------------------------------------------------------------------
+
+DOMAIN={{DEPLOYMENT_DOMAIN}}
+PHPMYADMIN_DOMAIN={{DEPLOYMENT_MYADMIN_DOMAIN}}
+
+STACK_NAME={{STACK_NAME}}
+TRAEFIK_PUBLIC_NETWORK={{TRAEFIK_PUBLIC_NETWORK}} # traefik-public
+TRAEFIK_PUBLIC_TAG={{TRAEFIK_PUBLIC_TAG}} # traefik-public
+
+MYSQL_ROOT_PASSWORD: root
+MYSQL_DATABASE: {{DATABASE_DBNAME}}
+MYSQL_USER: {{DATABASE_USERNAME}}
+MYSQL_PASSWORD: {{DATABASE_PASWWORD}}
+
+CI_ENVIRONMENT={{CI_ENVIRONMENT}}
+
+app.baseURL="https://{{DEPLOYMENT_DOMAIN}}/"
+
+database.default.hostname = {{DATABASE_HOSTNAME}}
+database.default.database = {{DATABASE_DBNAME}}
+database.default.username = {{DATABASE_USERNAME}}
+database.default.password = {{DATABASE_PASWWORD}}
+
+{{DC_ENV_CONF_SECTION}}
+
+#--------------------------------------------------------------------
+# ENVIRONMENT
+#--------------------------------------------------------------------
+
+# CI_ENVIRONMENT = production
+# CI_ENVIRONMENT = development
+
+#--------------------------------------------------------------------
+# APP
+#--------------------------------------------------------------------
+
+# app.baseURL = 'https://localhost'
+# If you have trouble with `.`, you could also use `_`.
+# app_baseURL = ''
+# app.forceGlobalSecureRequests = false
+# app.CSPEnabled = false
+
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
+
+# docker version:
+# database.default.hostname = db
+# database.default.database = ci4
+# database.default.username = ci4
+# database.default.password = ci4
+
+# local OS version:
+# database.default.hostname = localhost
+# database.default.database = ci4
+# database.default.username = root
+# database.default.password = root
+# database.default.DBDriver = MySQLi
+# database.default.DBPrefix =
+# database.default.port = 3306
+
+# database.tests.hostname = localhost
+# database.tests.database = ci4_test
+# database.tests.username = root
+# database.tests.password = root
+# database.tests.DBDriver = MySQLi
+# database.tests.DBPrefix =
+# database.tests.port = 3306
